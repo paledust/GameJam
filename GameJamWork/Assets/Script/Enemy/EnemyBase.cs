@@ -29,14 +29,7 @@ public class EnemyBase : MonoBehaviour {
 
 		GetComponent<AudioSource>().PlayOneShot(spawnSound);
 		moveSpeed = Random.Range(SpeedRange.x,SpeedRange.y);
-		ColorInitial();
 		MoveInitial();
-	}
-
-	//Initialize the Color 
-	virtual protected void ColorInitial()
-	{
-
 	}
 
 	//For movement Initialize
@@ -93,15 +86,14 @@ public class EnemyBase : MonoBehaviour {
 	// ToolBox for the Subclass
 	protected void CopyMovement()
 	{
-		Vector3 playerVelocity = player.GetComponent<Control>().getVelocity();
+		Vector3 playerVelocity = player.GetComponent<Control_Force>().getVelocity();
 		velocity = (originalRotation * playerVelocity.normalized).normalized * playerVelocity.magnitude * moveSpeed;
-		transform.position += velocity;
 	}
 
 	protected void Circling()
 	{
 		Vector3 toPlayer = player.transform.position - transform.position;
-		velocity = (toPlayer + Quaternion.Euler(0,0,90) * toPlayer.normalized * circlingRadius).normalized * moveSpeed;
+		velocity = (toPlayer + Quaternion.Euler(0,0,90) * toPlayer.normalized * circlingRadius).normalized * 50 * moveSpeed;
 	}
 
 	protected bool ifInRange()
