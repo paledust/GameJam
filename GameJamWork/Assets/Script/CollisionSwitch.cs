@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisonSwitch : MonoBehaviour {
+public class CollisionSwitch : MonoBehaviour {
 
 	// Use this for initialization
 
@@ -10,7 +10,8 @@ public class CollisonSwitch : MonoBehaviour {
 	{
 		if(collider.tag == "Player")
 		{
-			
+			Debug.Log("asdfadsf");
+			GetComponent<Collider2D>().isTrigger = false;
 		}
 	}
 }

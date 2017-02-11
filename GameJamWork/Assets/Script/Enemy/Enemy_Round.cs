@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Round : EnemyBase {
+
+	void Start()
+	{
+		base.Start();
+		ColorInitial();
+	}
 	override protected void MoveInitial()
 	{
 		transform.rotation = Quaternion.Euler(0,0,Random.Range(0,180.0f));

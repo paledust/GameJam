@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Trace : EnemyBase {	
+	void Start()
+	{
+		base.Start();
+		ColorInitial();
+	}
 	override protected void MoveInitial()
 	{
 		originalRotation = transform.rotation;

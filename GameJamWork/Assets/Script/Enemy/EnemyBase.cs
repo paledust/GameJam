@@ -8,11 +8,11 @@ public class EnemyBase : MonoBehaviour {
 	public Vector2 SpeedRange;
 	public float detectRange;
 	public Vector2 CirclingRange;
-	[SerializeField] protected float circlingRadius;
+	protected float circlingRadius;
 	[SerializeField] protected float health;
 	[SerializeField] protected AudioClip destroySound;
 	[SerializeField] protected AudioClip spawnSound;
-	[SerializeField] protected float moveSpeed;
+	protected float moveSpeed;
 	protected Vector3 velocity;
 	protected float distanceToPlayer;
 	protected bool ifMove = true;
@@ -36,6 +36,19 @@ public class EnemyBase : MonoBehaviour {
 	virtual protected void MoveInitial()
 	{
 		originalRotation = transform.rotation;
+	}
+
+	protected void ColorInitial()
+	{
+		Color _color = ColorChoose.ColorLibrary[Random.Range(0,4)];
+
+		GetComponent<SpriteRenderer>().color = _color;
+
+		if(GetComponent<TrailRenderer>())
+		{
+			GetComponent<TrailRenderer>().startColor = _color;
+			GetComponent<TrailRenderer>().endColor = _color;
+		}
 	}
 	
 	// Update is called once per frame
@@ -79,6 +92,7 @@ public class EnemyBase : MonoBehaviour {
 	{
 		ifKill = true;
 		HitSound();
+		GetComponent<SpriteRenderer>().enabled = false;
 		Destroy(gameObject,5.0f);
 		ifMove = false;
 	}
@@ -107,5 +121,11 @@ public class EnemyBase : MonoBehaviour {
 	public void ResetTarget(GameObject target)
 	{
 		player = target;
+	}
+
+	public void StayAway()
+	{
+		Vector2 playerDir = transform.position - player.transform.position;
+		GetComponent<Rigidbody2D>().AddForce(playerDir.normalized * moveSpeed, ForceMode2D.Impulse);
 	}
 }

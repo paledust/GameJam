@@ -23,18 +23,6 @@ public class Control_Force : MonoBehaviour
 	void Update ()
 	{
 		Rotate ();
-
-		// if (Input.GetButton ("Fire1")) {
-		// 	shootTimer += Time.deltaTime;
-		// 	if (shootTimer >= ShootPause) {
-		// 		Shoot ();	
-		// 		shootTimer = 0.0f;
-		// 	}
-		// }
-
-		// if (Input.GetButtonUp ("Fire1")) {
-		// 	shootTimer = 0.0f;
-		// }
 	}
 
 	void FixedUpdate()
