@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class EnemyBoss_1 : EnemyBase {
 	// Update is called once per frame
+	public BossManager manager;
 
+	protected void Update () {
+		distanceToPlayer = (player.transform.position - transform.position).magnitude;
+		if(ifMove)
+		{
+			Move();
+		}
+		rotate();
+		if(health <= 0.0f && !ifKill)
+		{
+			Kill();
+			manager.SendMessage("BossDestroyAction");
+		}
+	}
 	override protected void Move()
 	{
 		if(ifInRange())

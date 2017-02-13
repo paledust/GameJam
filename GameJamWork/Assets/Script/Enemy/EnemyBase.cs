@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour {
 	static protected GameObject player;
+	static protected EnemyManager enemymanager;
 	public Color32 ShipColor;
 	public Vector2 SpeedRange;
 	public float detectRange;
@@ -22,6 +23,7 @@ public class EnemyBase : MonoBehaviour {
 	protected void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+		enemymanager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
 	}
 	protected void Start () {
 		if(!GetComponent<AudioSource>())
@@ -93,8 +95,10 @@ public class EnemyBase : MonoBehaviour {
 		ifKill = true;
 		HitSound();
 		GetComponent<SpriteRenderer>().enabled = false;
+		GetComponent<Collider2D>().enabled = false;
 		Destroy(gameObject,5.0f);
 		ifMove = false;
+		enemymanager.SubEnemy();
 	}
 
 	// ToolBox for the Subclass
@@ -127,5 +131,10 @@ public class EnemyBase : MonoBehaviour {
 	{
 		Vector2 playerDir = transform.position - player.transform.position;
 		GetComponent<Rigidbody2D>().AddForce(playerDir.normalized * moveSpeed, ForceMode2D.Impulse);
+	}
+
+	public void SetMove(bool _ifmove)
+	{
+		ifMove = _ifmove;
 	}
 }
