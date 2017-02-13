@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour {
 		if(timer >= coolDown)
 		{
 			int i = Random.Range(0,spawnLocation.Length);
-			Instantiate(enemyPrefeb,spawnLocation[i].position + Vector3.left * Random.Range(-40,40) + Vector3.up * Random.Range(-40,40),
+			Instantiate(enemyPrefeb,spawnLocation[i].position + Vector3.left * Random.Range(-10,10) + Vector3.up * Random.Range(-10,10),
 						spawnLocation[i].rotation);
 			timer = 0.0f;
 			addEnemy();

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Level_Eye.unity
+- path: Assets/Scene/Level_Sound.unity
   isLoaded: 1
   isActive: 1
